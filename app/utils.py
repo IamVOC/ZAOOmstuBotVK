@@ -2,6 +2,7 @@ import requests
 from decouple import config 
 from os import environ
 import json
+import vk
 
 def deserialize(json):
     chat_id = json['object']['message']['from_id']
@@ -20,20 +21,4 @@ def main_server_request(message):
             "message": message
             }
     return requests.post(config('MAIN_SERVER_ADDRESS'), json=payload)
-                 
-def send_message(payload):
-    url = "https://api.vk.com/method/messages.send"
-    params = payload
-    print(payload)
-    response = requests.post(url, params=params)
-    return response.json()
-
-def generate_payload(chat_id, text):
-    payload = {
-            "access_token": config('ACCESS_TOKEN'),
-            "v": 5.131,
-            "peer_id": chat_id,
-            "message": text['detail']
-            }
-
-    return payload
+                
