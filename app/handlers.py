@@ -10,14 +10,14 @@ class MessageHandler(metaclass=Singleton):
                 }
 
     def default_state(self, json):
-        chat_id, message = deserialize_tg(json)
+        chat_id, message = deserialize(json)
         cmhandler = self.support['CommandHandler']
         handled, widgets = cmhandler.handle(message)
         if not handled:
             predicted_message = main_server_request(message)
-            send_message_tg(generate_payload_tg(chat_id, predicted_message.json()['answer']))
+            send_message(generate_payload(chat_id, predicted_message.json()))
             return 'OK', 200
-        send_message_tg(generate_payload_tg(chat_id, handled, widgets=widgets))
+        send_message(generate_payload(chat_id, handled, widgets=widgets))
         return 'OK', 200
 
     def update_state(self, state, support_objects=None):
