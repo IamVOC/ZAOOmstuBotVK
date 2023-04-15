@@ -14,7 +14,7 @@ class MessageHandler(metaclass=Singleton):
 
     def default_state(self, json):
         chat_id, message = deserialize(json)
-        predicted_message = main_server_request(message)
+        predicted_message = main_server_request(chat_id, message)
         self.send_message(chat_id, predicted_message.json())
         return 'OK', 200
 

@@ -8,9 +8,10 @@ def deserialize(json):
     return chat_id, text
 
 
-def main_server_request(message):
+def main_server_request(chat_id, message):
     payload = {
         "bot_guid": config('BOT_GUID'),
-        "message": message
+        "message": message,
+        "client_id": chat_id
     }
     return requests.post(config('MAIN_SERVER_ADDRESS'), json=payload)
