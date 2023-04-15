@@ -1,4 +1,4 @@
-from app.patterns import Singleton
+
 
 class exceptionHandler():
 

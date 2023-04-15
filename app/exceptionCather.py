@@ -1,6 +1,6 @@
 from app.patterns import Singleton
-from app.exceptionHandler import exceptionHandler
 from app.logger import proxyLogger
+
 
 class exceptionCather(metaclass=Singleton):
 
@@ -10,5 +10,5 @@ class exceptionCather(metaclass=Singleton):
                 func(*args, **kwargs)
             except Exception as ex:
                 proxyLogger.log(ex, func)
-    
+
         return inner_function

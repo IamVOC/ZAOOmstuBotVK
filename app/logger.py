@@ -1,9 +1,10 @@
-from patterns import Singleton
 import logging
+from exceptionHanler import exceptionHandler
 
-class proxyLogger()
+
+class proxyLogger():
     logging.basicConfig(level=logging.INFO, filename="py_log.log",
-        format="%(asctime)s %(levelname)s %(message)s")
+                        format="%(asctime)s %(levelname)s %(message)s")
 
     def log(self, err, func):
         self.logging.error("ERROR: " + err + "IN CLASS: " + func.__class__)
